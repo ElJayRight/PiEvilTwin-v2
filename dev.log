@@ -1,0 +1,9 @@
+28-03-2023
+===
+---
+Two dnsmasq.conf version to support encryption
+Look into adding an option for a crontab like the orginal tool
+Need to add the rest of the OG repo.
+---
+Added cron option a License and different dnsmasq.conf files.
+Need to add a cron kill script.
