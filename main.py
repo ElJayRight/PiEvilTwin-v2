@@ -40,8 +40,8 @@ def main():
             if event.type == pygame.QUIT or (event.type ==pygame.KEYDOWN and event.key ==pygame.K_q):
                 pygame.quit()
                 sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN or event.type==pygame.KEYDOWN:
-                if scan_ap_button.collidepoint(event.pos) or event.key==pygame.K_1:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if scan_ap_button.collidepoint(event.pos):
                     toggle_button(screen,scan_ap_button,not scanning_ap,small_font, ("Scanning","SCAN"))
                     mon_name = start_monitor_mode(wifi_card_name)
                     scan_aps(mon_name,5,"out")
@@ -52,7 +52,8 @@ def main():
                     draw_text("Select an AP to mimic",(90,82),small_font,screen)
                     move_menu_selector(screen,ap_index)
                     stop_monitor_mode(mon_name)
-                elif evil_twin.collidepoint(event.pos) or event.type==pygame.K_2:
+                elif evil_twin.collidepoint(event.pos):
+                    #ew should fix
                     if evil_twin_state != 1:
                         evil_twin_state  = 2
                         toggle_button(screen,evil_twin,evil_twin_state,small_font,("Stop","Start"))
@@ -185,19 +186,10 @@ def get_aps(file_name) -> dict:
     return aps
 
 def add_wpa2(password):
-    with open('./hostapd.conf', 'a') as f:
-        for line in f:
-            if 'wpa' in line:
-                return
-        f.write("\nmacaddr_acl=0\n")
-        f.write("ignore_broadcast_ssid=0\n")
-        f.write("wpa=2\n")
-        f.write("wpa_key_mgmt=WPA-PSK\n")
-        f.write("rsn_pairwise=CCMP\n")
-        f.write(f"wpa_passphrase={password}\n")
+    update_file('./config/hostapd-WPA2.conf',f"wpa_passphrase={password}\n")
 
 def change_ssid(name: str):
-    update_file('./hostapd.conf',f'ssid={name}\n')
+    update_file('./config/hostapd-OPN.conf',f'ssid={name}\n')
 
 def draw_text(msg:str, location: tuple, font: pygame.font.Font, window):
     text = font.render(msg,True,(0,0,0))

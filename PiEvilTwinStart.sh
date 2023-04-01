@@ -1,12 +1,12 @@
 #!/bin/bash
 
-cp -f dnsmasq.conf /etc/dnsmasq.conf
-cp -f hostapd-OPN.conf /etc/hostadp/hostapd.conf
+cp -f ./config/dnsmasq.conf /etc/dnsmasq.conf
+cp -f ./config/hostapd-OPN.conf /etc/hostadp/hostapd.conf
 
 service apache2 start
 sleep 1
 ifconfig wlan0 down
-macchanger -A wlan0
+macchanger --mac=aa:bb:cc:dd:ee:ff wlan0
 sleep 1
 ifconfig wlan0 up
 sleep 1

@@ -21,9 +21,9 @@ ifconfig br0 down
 brctl delbr br0
 
 # Restore the original MAC address of your wireless interface
-ifconfig wlxc01c301fecff down
-macchanger -p wlxc01c301fecff
-ifconfig wlxc01c301fecff up
+ifconfig wlan0 down
+macchanger -p wlan0
+ifconfig wlan0 up
 
 # Restart networking
 service networking restart

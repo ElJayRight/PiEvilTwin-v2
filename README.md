@@ -18,6 +18,7 @@ Stop
 ./stop.sh
 ```
 
+You can also run `./start-on-boot.sh` to make it auto start on boot.
 
 # To Do
 Add in crontab support.

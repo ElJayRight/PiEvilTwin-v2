@@ -7,3 +7,17 @@ Need to add the rest of the OG repo.
 ---
 Added cron option a License and different dnsmasq.conf files.
 Need to add a cron kill script.
+---
+29-03-2023
+===
+---
+So the GUI has some errors
+Removed the hotkeys cause I cant write proper code. (going to have to do some values or something then check
+The Evil-twin button doesn't work?
+---
+02-04-2023
+===
+---
+Need to add a non GUI option too.
+Fixed the issue with the 2 hostapd files.
+---
