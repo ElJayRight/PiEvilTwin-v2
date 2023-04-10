@@ -1,7 +1,7 @@
 28-03-2023
 ===
 ---
-Two dnsmasq.conf version to support encryption
+Two dnsmasq.conf version to support encryption (Fixed - 02-04-2023)
 Look into adding an option for a crontab like the orginal tool
 Need to add the rest of the OG repo.
 ---
@@ -11,9 +11,9 @@ Need to add a cron kill script.
 29-03-2023
 ===
 ---
-So the GUI has some errors
-Removed the hotkeys cause I cant write proper code. (going to have to do some values or something then check
-The Evil-twin button doesn't work?
+So the GUI has some errors (Fixed - 04-04-2023)
+Removed the hotkeys cause I cant write proper code. (going to have to do some values or something then check)
+The Evil-twin button doesn't work? (Fixed - 04-04-2023)
 ---
 02-04-2023
 ===
@@ -21,3 +21,20 @@ The Evil-twin button doesn't work?
 Need to add a non GUI option too.
 Fixed the issue with the 2 hostapd files.
 ---
+04-04-2023
+===
+---
+Fixed the wipe screen when scanning ap thing
+---
+Fixed display errors and QoL and got rid of more pointless code.
+Added whitespace so my eyes dont bleed when I look at the code.
+---
+11-04-2023
+===
+---
+Going to stop building the GUI and instead build out a cli version. Wanting to port everything from cli to gui eventually.
+---
+The CLI version is now as good as the GUI.
+Still need to add WPA2 support.
+
+Fixed bug in main (forgot what it was), also found a bug with the starting ssid and mac addr. Easu fix just lazy
