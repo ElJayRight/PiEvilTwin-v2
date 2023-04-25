@@ -37,4 +37,21 @@ Going to stop building the GUI and instead build out a cli version. Wanting to p
 The CLI version is now as good as the GUI.
 Still need to add WPA2 support.
 
-Fixed bug in main (forgot what it was), also found a bug with the starting ssid and mac addr. Easu fix just lazy
+Fixed bug in main (forgot what it was), also found a bug with the starting ssid and mac addr. Easy fix just lazy
+---
+19-04-2023
+===
+---
+Need to change the logic of writing the mac addr and ssid, this should be done before the AP is started.
+---
+26-04-2023
+===
+---
+Should use sed for replace with the config files.
+Think it would be cool to add a feature to save scanned AP's and then be able to clone them later on, passive scanning mode? Might also add geo tagging. (ethical?)
+
+Added wpa2 password.
+---
+Don't really want to use sed as I'm going to need to sanitise a bunch of inputs.
+
+Should restructure a the menu for when the app is running.

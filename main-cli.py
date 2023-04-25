@@ -4,12 +4,15 @@ import os
 import re
 
 def main():
-    os.system("clear")
+    
     evil_twin_state = 0
-    SSID = "Not an Evil Twin" # read in from file
-    MAC_ADDR = "aa:bb:cc:dd:ee:ff" # read in from file
+    change_ssid("Not an Evil Twin")
+    change_mac_addr("aa:bb:cc:dd:ee:ff")
+    SSID = "Not an Evil Twin"
+    MAC_ADDR = "aa:bb:cc:dd:ee:ff"
 
     wifi_card_name = get_wifi_adaptor()
+    os.system("clear")
     print("RPi Evil-Twin framework. (Add cool ascii art.)")
     while True:
         print(f"Current SSID: {SSID}\nCurrent BSSID: {MAC_ADDR}\n")
@@ -24,10 +27,21 @@ def main():
         
         menu = input("> ")
         os.system('clear')
-        if menu.lower() == 'quit' or menu.lower() == 'q':
+        if menu.lower() in ['quit','q','exit']:
             break
         elif menu == '1':
             if evil_twin_state==0:
+                #check if they want wpa 2.
+                print("Enable WPA2")
+                print("[0] No")
+                print("[1] Yes")
+                wpa_check = input("> ")
+                if wpa_check=='1':
+                    pwd = input("Enter password for Evil-Twin: ")
+                    add_wpa2(pwd)
+                    os.system("cp -f ./config/hostapd-WPA2.conf /etc/hostadp/hostapd.conf")
+                else:
+                    os.system("cp -f ./config/hostapd-OPN.conf /etc/hostadp/hostapd.conf")
                 print("Starting Evil-Twin ...")
                 p = subprocess.Popen(["sudo", "./PiEvilTwinStart.sh"], stdin = subprocess.PIPE, stdout = subprocess.PIPE)
                 p.communicate()
@@ -61,7 +75,7 @@ def main():
                     change_mac_addr(MAC_ADDR)
 
             except TypeError as e:
-                pass
+                raise(e)
 
         elif menu == '3':
             print("Scanning ...")
@@ -131,7 +145,11 @@ def update_file(file_name: str, string: str):
 
 def get_wifi_adaptor() -> str:
     p = subprocess.Popen(["sudo", "airmon-ng"], stdin = subprocess.PIPE, stdout = subprocess.PIPE)
-    name = p.stdout.readlines()[3].decode().split()[1]
+    try:
+        name = p.stdout.readlines()[3].decode().split()[1]
+    except:
+        print("Wifi card not found.") # Need to add more verbose error checking.
+        exit()
     return name
 
 

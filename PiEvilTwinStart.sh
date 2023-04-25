@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cp -f ./config/dnsmasq.conf /etc/dnsmasq.conf
-cp -f ./config/hostapd-OPN.conf /etc/hostadp/hostapd.conf
 
 service apache2 start
 sleep 1
